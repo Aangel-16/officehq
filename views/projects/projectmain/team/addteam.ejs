@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Add Team Member - <%= project.name %></title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="/style.css" rel="stylesheet">
+</head>
+<body>
+  <div class="container mt-5">
+    <h2>Add Team Member to <%= project.name %></h2>
+
+    <form method="POST" action="/projects/<%= project._id %>/team/addteam">
+      <div class="mb-3">
+        <label>Type</label>
+        <select class="form-select" name="type" required>
+          <option value="">Select</option>
+          <option>Full-Time</option>
+          <option>Part-Time</option>
+          <option>Contract</option>
+        </select>
+      </div>
+
+      <div class="mb-3">
+        <label>Name</label>
+        <input type="text" class="form-control" name="name" placeholder="Enter full name" required />
+      </div>
+
+      <div class="mb-3">
+        <label>Contact Number</label>
+        <input type="text" class="form-control" name="contact" placeholder="Enter contact number" required />
+      </div>
+
+      <div class="mb-3">
+        <label>Email ID</label>
+        <input type="email" class="form-control" name="email" placeholder="Enter email address" required />
+      </div>
+
+      <div class="mb-3">
+        <label>Role</label>
+        <select class="form-select" name="role" required>
+          <option value="">Select Role</option>
+          <option>Developer</option>
+          <option>Designer</option>
+          <option>HR Coordinator</option>
+          <option>QA Engineer</option>
+          <option>Project Manager</option>
+        </select>
+      </div>
+
+      <div class="d-flex justify-content-between">
+        <a href="/projects/<%= project._id %>/team" class="btn btn-secondary">Cancel</a>
+        <button type="submit" class="btn btn-primary">Save Member</button>
+      </div>
+    </form>
+  </div>
+</body>
+</html>
