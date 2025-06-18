@@ -91,13 +91,13 @@ body {
 }
 
 .dashboard-title {
-  font-size: 18px;
+  font-size: 10px;
   font-weight: 600;
   color: #0C8FAD;
 }
 
 .dashboard-value {
-  font-size: 34px;
+  font-size: 30px;
   font-weight: bold;
   color: #0C8FAD;
 }
