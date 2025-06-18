@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Documents</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+  <div class="top-bar">
+    <div class="search-bar">
+      <i class="bi bi-search"></i>
+      <input type="text" placeholder="Search...." />
+    </div>
+    <a href="/staff/addDocument/<%= staffId %>" class="add-btn">+ Add Document</a>
+  </div>
+
+  <div class="card-container">
+    <% documents.forEach(doc => { %>
+      <div class="doc-card">
+        <i class="bi bi-file-earmark-text" style="font-size: 1.5rem;"></i>
+        <h5><%= doc.title %></h5>
+        <p><%= doc.title %> Expire | <%= doc.expiryDate %></p>
+        <p>Document</p>
+        <a href="/uploads/<%= doc.fileName %>" target="_blank"><%= doc.fileName %></a>
+
+        <br/>
+        <a href="/documents/<%= doc._id %>" class="btn btn-info btn-sm">See Details</a>
+      </div>
+    <% }) %>
+  </div>
+
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+</body>
+</html>

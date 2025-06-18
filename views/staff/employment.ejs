@@ -1,0 +1,91 @@
+<!-- employement.ejs -->
+<%- include('../partials/header') %>
+
+<div class="breadcrumb">
+  <p>Staff > <span>See Details</span></p>
+</div>
+
+<div class="tabs">
+  <a href="/staff/edit/<%= staff._id %>" class="tab">Details</a>
+  <a href="/staff/employment/<%= staff._id %>" class="tab active">Employment</a>
+  <a href="/staff/documentList/<%= staff._id %>" class="tab">Documents</a>
+
+  <a href="#" class="tab">Role & permission</a>
+</div>
+
+
+<div class="employment-container">
+  <div class="top-bar">
+    <input type="text" id="searchInput" placeholder="Search Filter Lines..." />
+    <button onclick="openModal()">+ Add Employment</button>
+  </div>
+
+  <table id="employmentTable">
+    <thead>
+      <tr>
+        <th>Role Title</th>
+        <th>Employment Type</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% employmentList.forEach(emp => { %>
+        <tr>
+          <td><%= emp.role %></td>
+          <td><%= emp.type %></td>
+          <td><%= emp.startDate %></td>
+          <td><%= emp.endDate %></td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</div>
+
+<!-- Modal -->
+<div id="employmentModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <h3>Add Employment</h3>
+    <form action="/staff/addEmployment/<%= staff._id %>" method="POST">
+      <input type="text" name="role" placeholder="Role Title" required />
+      <select name="type" required>
+        <option value="">Select Type</option>
+        <option value="Labour">Labour</option>
+        <option value="Intern">Intern</option>
+        <option value="Contract">Contract</option>
+      </select>
+      <input type="date" name="startDate" required />
+      <input type="date" name="endDate" required />
+      <button type="submit">Add</button>
+    </form>
+  </div>
+</div>
+
+<script>
+  function openModal() {
+    document.getElementById('employmentModal').style.display = 'block';
+  }
+
+  function closeModal() {
+    document.getElementById('employmentModal').style.display = 'none';
+  }
+
+  window.onclick = function (event) {
+    const modal = document.getElementById('employmentModal');
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  }
+
+  document.getElementById('searchInput').addEventListener('keyup', function () {
+    const filter = this.value.toLowerCase();
+    const rows = document.querySelectorAll('#employmentTable tbody tr');
+    rows.forEach(row => {
+      const text = row.innerText.toLowerCase();
+      row.style.display = text.includes(filter) ? '' : 'none';
+    });
+  });
+</script>
+
+<%- include('../partials/footer') %>

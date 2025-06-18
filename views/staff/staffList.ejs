@@ -1,0 +1,47 @@
+<%- include("../partials/header") %>
+
+<div class="container mt-5">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="text-primary">Staff Members</h2>
+    <a href="/staff/add" class="btn btn-success">+ Add Staff</a>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table table-bordered table-striped align-middle">
+      <thead class="table-dark text-center">
+        <tr>
+          <th>Photo</th>
+          <th>Name</th>
+          <th>Phone</th>
+          <th>Email</th>
+          <th>Designation</th>
+          <th>Department</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% staff.forEach((person) => { %>
+          <tr class="text-center">
+            <td>
+              <% if (person.photo) { %>
+                <img src="/uploads/<%= person.photo %>" class="img-thumbnail" style="width: 80px; height: 80px; object-fit: cover;">
+              <% } else { %>
+                <span class="text-muted">No Image</span>
+              <% } %>
+            </td>
+            <td><%= person.firstName %> <%= person.lastName %></td>
+            <td><%= person.phone || '-' %></td>
+            <td><%= person.email %></td>
+            <td><%= person.designation %></td>
+            <td><%= person.department %></td>
+            <td>
+              <a href="/staff/<%= person._id %>" class="btn btn-info btn-sm">See Details</a>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<%- include("../partials/footer") %>
