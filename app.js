@@ -4,8 +4,9 @@ const path = require("path");
 const fileUpload = require("express-fileupload");
 const fs = require("fs");
 const mongoose = require("mongoose");
-const expressLayouts = require("express-ejs-layouts");
 
+// Load DB config
+const connectToDatabase = require("./dbConfig");
 
 //import models
 const {staff}= require ("./models/staffModel");
@@ -14,20 +15,8 @@ const {user}= require ("./models/userModel");
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-app.use(expressLayouts);
-app.set("layout", "index"); // index.ejs in /views
-
- // MongoDB connection
-const url = "mongodb+srv://angelsmycourses16:angel725@cluster0.51gncrh.mongodb.net/final_project?retryWrites=true&w=majority&appName=Cluster0";
-const connectToDatabase = async () => {
-  try {
-    await mongoose.connect(url);
-    console.log("Connected to MongoDB");
-  } catch (error) {
-    console.error("Error connecting to MongoDB:", error);
-  }
-};
-connectToDatabase(); // Connect to MongoDB
+// Connect to MongoDB
+connectToDatabase();
 
 // View Engine
 app.set("view engine", "ejs");
@@ -43,23 +32,34 @@ app.use(fileUpload());
 const uploadDir = path.join(__dirname, "public/uploads");
 if (!fs.existsSync(uploadDir)) fs.mkdirSync(uploadDir);
 
-// Routes
-
-/*Redirect root to staff listing
-app.get("/", (req, res) => res.redirect("/staff"));*/
-
 // Modular Routes
 app.use("/staff", require("./routes/staffRoute"));
 app.use("/project", require("./routes/projectRoute"));
 
 
-//Rendering index page
+//Rendering login page
 app.get("/", async (req, res) => {
   try {
-      res.render("index");
+      res.render("login");
   } catch (error) {
     res.status(500).send("Error loading homepage");
   }
+});
+
+//POST : login page
+app.post('/', async (req, res) => {
+  const { username, password } = req.body;
+
+  // Simple login check (hardcoded for now)
+  if (username === 'admin@example.com' && password === 'admin123') {
+    return res.redirect('home');
+  } else {
+    return res.send('<script>alert("Invalid credentials!"); window.location.href = "/";</script>');
+  }
+});
+
+app.get('/home',(req, res)=>{
+  res.render('home');
 });
 
 
