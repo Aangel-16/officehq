@@ -29,8 +29,9 @@ button, .btn, .add-staff-btn, .btn-details {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
   max-width: 1300px;
   margin: 40px auto;
-  margin-top: 15px;
+  margin: 15px auto;
 }
+
 
 
 /* ===== Navbar Styling ===== */
@@ -474,29 +475,12 @@ button, .btn, .add-staff-btn, .btn-details {
   border-radius: 12px;
 }
 
-
-
 .address-box {
   width: 200%;
   max-width: 400px;
 }
 
-
-
-
 /*==AddDocument===*/
-/* === Base Font & Input Settings === */
-body, input, select, textarea, button {
-  font-family: 'Inter', sans-serif;
-  font-size: 15px;
-}
-
-/* Common unified button font style */
-button, .btn, .add-staff-btn, .btn-details {
-  font-size: 15px;
-  font-weight: 500;
-}
-
 /* === Form Container === */
 .form-container {
   max-width: 850px;
