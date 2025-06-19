@@ -341,4 +341,10 @@ button, .btn, .add-staff-btn, .btn-details {
   border-radius: 16px;
 }
 
+.address-box {
+  width: 200%;
+  max-width: 600px;
+}
+
+
 
