@@ -94,15 +94,15 @@
           <input type="text" name="lastName" value="<%= staff.lastName || '' %>" class="form-control" required>
         </div>
         <div class="col-md-4">
-          <label class="form-label">Contact Number</label>
-          <input type="tel" name="phone" value="<%= staff.phone || '' %>" class="form-control">
+          <label class="form-label">Contact Number<span class="text-danger">*</span></label>
+          <input type="tel" name="phone" value="<%= staff.phone || '' %>" class="form-control" required>
         </div>
         <div class="col-md-4">
-          <label class="form-label">Email ID</label>
+          <label class="form-label">Email ID<span class="text-danger">*</span></label>
           <input type="email" name="email" value="<%= staff.email || '' %>" class="form-control">
         </div>
         <div class="col-md-4">
-          <label class="form-label">Gender</label>
+          <label class="form-label">Gender<span class="text-danger">*</span></label>
           <select name="gender" class="form-select">
             <option value="">Select</option>
             <option <%= staff.gender === 'Male' ? 'selected' : '' %>>Male</option>
@@ -111,15 +111,15 @@
           </select>
         </div>
         <div class="col-md-4">
-          <label class="form-label">Nationality</label>
+          <label class="form-label">Nationality<span class="text-danger">*</span></label>
           <input type="text" name="nationality" value="<%= staff.nationality || '' %>" class="form-control">
         </div>
         <div class="col-md-4">
-          <label class="form-label">Employee ID</label>
+          <label class="form-label">Employee ID<span class="text-danger">*</span></label>
           <input type="text" name="employeeId" value="<%= staff.employeeId || '' %>" class="form-control">
         </div>
         <div class="col-md-4">
-          <label class="form-label">Department</label>
+          <label class="form-label">Department<span class="text-danger">*</span></label>
           <select name="department" class="form-select">
             <option value="">Select</option>
             <option <%= staff.department === 'HR' ? 'selected' : '' %>>HR</option>
@@ -129,11 +129,11 @@
           </select>
         </div>
         <div class="col-md-4">
-          <label class="form-label">Designation</label>
+          <label class="form-label">Designation<span class="text-danger">*</span></label>
           <input type="text" name="designation" value="<%= staff.designation || '' %>" class="form-control">
         </div>
         <div class="col-md-12">
-          <label class="form-label">Address</label>
+          <label class="form-label">Address<span class="text-danger">*</span></label>
           <textarea name="address" class="form-control"><%= staff.address || '' %></textarea>
         </div>
       </div>
