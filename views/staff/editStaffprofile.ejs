@@ -1,89 +1,48 @@
-<!--staffprofile.ejs -->
 <%- include('../partials/header') %>
-
-<!-- Navigation Bar -->
-<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm px-4">
-  <a class="navbar-brand d-flex align-items-center" href="#">
-    <img src="https://via.placeholder.com/30" alt="Logo" class="me-2" style="border-radius: 50%;">
-    <span class="fw-bold" style="color: #0C8FAD;">Office HQ</span>
-  </a>
-  <div class="collapse navbar-collapse justify-content-between">
-    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-      <li class="nav-item">
-        <a class="nav-link active" href="#">Home</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Others</a>
-      </li>
-    </ul>
-    <ul class="navbar-nav d-flex flex-row gap-3">
-      <li class="nav-item">
-        <a class="nav-link" href="#">
-          <i class="bi bi-bell fs-5"></i>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">
-          <i class="bi bi-person-circle fs-5"></i>
-        </a>
-      </li>
-    </ul>
-  </div>
-</nav>
-
-<!-- Breadcrumb + Tabs -->
-<div class="container mt-3">
-  <nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item">Staff</li>
-      <li class="breadcrumb-item active">See Details</li>
-    </ol>
-  </nav>
-
-  <ul class="nav nav-tabs mb-4">
-    <li class="nav-item">
-      <a class="nav-link active" href="#">Details</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="/staff/employment/<%= staff._id %>">Employment</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="/documentsList">Documents</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#">Role & permission</a>
-    </li>
-  </ul>
-</div>
+<%- include('../partials/staffHeader', { staff, activeTab: 'details' }) %>
 
 <!-- Form Section -->
-<div class="container mb-5">
-  <div class="form-section bg-white p-4 rounded shadow-sm">
-
+<div class="container mb-4">
     <!-- Profile Header -->
-    <div class="d-flex align-items-center mb-4">
-      <img src="<%= staff.photo ? ('/uploads/' + staff.photo) : 'https://via.placeholder.com/100' %>" alt="Profile Photo" class="rounded-circle me-4" style="width: 100px; height: 100px; object-fit: cover;">
-      <div>
-        <strong class="d-block fs-5"><%= staff.firstName || '' %> <%= staff.lastName || '' %></strong>
-        <% if (staff.role) { %>
-          <small class="text-muted"><%= staff.role %></small>
-        <% } %>
+    <form id="staffForm" action="/staff/edit/<%= staff._id %>" method="POST" enctype="multipart/form-data">
+      <div class="d-flex align-items-center mb-4">
+
+        <!-- Profile Image with Overlay -->
+        <div class="position-relative me-4" style="width: 100px; height: 100px;">
+          <img src="<%= staff.photo ? ('/uploads/' + staff.photo) : 'https://via.placeholder.com/100' %>" 
+               alt="Profile Photo" 
+               class="rounded-circle"
+               style="width: 100px; height: 100px; object-fit: cover; border: 3px solid #e6f4f7;">
+
+          <!-- Hidden File Input -->
+          <input type="file" id="photoUpload" name="photo" accept="image/*" class="d-none">
+
+          <!-- Camera Icon Overlay -->
+          <label for="photoUpload" 
+                 class="position-absolute bottom-0 end-0 bg-white border rounded-circle p-1 shadow-sm" 
+                 style="cursor: pointer; transform: translate(25%, 25%);">
+            <i class="bi bi-camera-fill text-primary"></i>
+          </label>
+        </div>
+
+        <div>
+          <strong class="d-block fs-5"><%= staff.firstName || '' %> <%= staff.lastName || '' %></strong>
+          <% if (staff.role) { %>
+            <small class="text-muted"><%= staff.role %></small>
+          <% } %>
+        </div>
       </div>
-    </div>
 
-    <!-- Title + Buttons -->
-    <div class="d-flex justify-content-between align-items-center mb-4">
-      <h4 class="form-title" style="color: #0C8FAD;">Basic Info</h4>
-      <div class="mt-4 text-end">
-        <button type="button" class="btn btn-cancel me-2">Cancel</button>
-        <button type="submit" form="staffForm" class="btn btn-save" style="background-color: #0C8FAD; color: white;">Save</button>
+      <!-- Title + Buttons -->
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h4 class="form-title" style="color: #0C8FAD;">Basic Info</h4>
+        <div class="mt-4 text-end">
+          <button type="button" class="btn btn-cancel me-2">Cancel</button>
+          <button type="submit" class="btn btn-save" style="background-color: #0C8FAD; color: white;">Save</button>
+        </div>
       </div>
-    </div>
 
-    <!-- Staff Form -->
-    <form id="staffForm" action="/staff/edit/<%= staff._id %>" method="POST">
-      <!-- Removed hidden id field -->
-
+      <!-- Staff Form Fields -->
       <div class="row g-3">
         <div class="col-md-4">
           <label class="form-label">First Name <span class="text-danger">*</span></label>
@@ -94,15 +53,15 @@
           <input type="text" name="lastName" value="<%= staff.lastName || '' %>" class="form-control" required>
         </div>
         <div class="col-md-4">
-          <label class="form-label">Contact Number</label>
-          <input type="tel" name="phone" value="<%= staff.phone || '' %>" class="form-control">
+          <label class="form-label">Contact Number<span class="text-danger">*</span></label>
+          <input type="tel" name="phone" value="<%= staff.phone || '' %>" class="form-control" required>
         </div>
         <div class="col-md-4">
-          <label class="form-label">Email ID</label>
+          <label class="form-label">Email ID<span class="text-danger">*</span></label>
           <input type="email" name="email" value="<%= staff.email || '' %>" class="form-control">
         </div>
         <div class="col-md-4">
-          <label class="form-label">Gender</label>
+          <label class="form-label">Gender<span class="text-danger">*</span></label>
           <select name="gender" class="form-select">
             <option value="">Select</option>
             <option <%= staff.gender === 'Male' ? 'selected' : '' %>>Male</option>
@@ -111,15 +70,15 @@
           </select>
         </div>
         <div class="col-md-4">
-          <label class="form-label">Nationality</label>
+          <label class="form-label">Nationality<span class="text-danger">*</span></label>
           <input type="text" name="nationality" value="<%= staff.nationality || '' %>" class="form-control">
         </div>
         <div class="col-md-4">
-          <label class="form-label">Employee ID</label>
+          <label class="form-label">Employee ID<span class="text-danger">*</span></label>
           <input type="text" name="employeeId" value="<%= staff.employeeId || '' %>" class="form-control">
         </div>
         <div class="col-md-4">
-          <label class="form-label">Department</label>
+          <label class="form-label">Department<span class="text-danger">*</span></label>
           <select name="department" class="form-select">
             <option value="">Select</option>
             <option <%= staff.department === 'HR' ? 'selected' : '' %>>HR</option>
@@ -129,16 +88,15 @@
           </select>
         </div>
         <div class="col-md-4">
-          <label class="form-label">Designation</label>
+          <label class="form-label">Designation<span class="text-danger">*</span></label>
           <input type="text" name="designation" value="<%= staff.designation || '' %>" class="form-control">
         </div>
-        <div class="col-md-12">
-          <label class="form-label">Address</label>
-          <textarea name="address" class="form-control"><%= staff.address || '' %></textarea>
-        </div>
+        <div class="col-12 mb-4">
+          <label class="form-label" for="address">Address</label>
+          <textarea name="address" id="address" class="form-control login-input address-box" rows="3" required></textarea>
+        </div> 
       </div>
     </form>
   </div>
-</div>
 
 <%- include('../partials/footer') %>
