@@ -1,8 +1,5 @@
 <%- include("../partials/header") %>
-
-<% if (typeof staff !== 'undefined') { %>
-  <%- include("../partials/staffHeader", { staff: staff, activeTab: 'documentList' }) %>
-<% } %>
+<%- include('../partials/staffHeader', { staff, activeTab: 'documents' }) %>
 
 <div class="staff-container mt-5">
   <div class="d-flex justify-content-between align-items-center mb-4">
