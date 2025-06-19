@@ -5,6 +5,20 @@ body {
   min-height: 100vh;
   margin: 0;
   padding: 0;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/* Common font size for inputs, selects, buttons */
+input, select, textarea, button {
+  font-size: 15px; /* adjust to match your design */
+  font-family: 'Inter', sans-serif;
+}
+
+/* Unified button font style */
+button, .btn, .add-staff-btn, .btn-details {
+  font-size: 15px;
+  font-weight: 500;
 }
 
 /* ===== Container/Card Wrapper ===== */
@@ -15,6 +29,7 @@ body {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
   max-width: 1300px;
   margin: 40px auto;
+  
 }
 
 /* ===== Navbar Styling ===== */
@@ -117,3 +132,195 @@ body {
 .tab-content.active {
   display: block;
 }
+
+/* === Enhanced Login Page Styling === */
+.login-body {
+  background: linear-gradient(135deg, #cbefff, #f0f4f8);
+  font-family: 'Inter', sans-serif;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-wrapper {
+  width: 100%;
+  max-width: 440px;
+  padding: 20px;
+}
+
+.login-card {
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 16px;
+  padding: 40px;
+  box-shadow: 0 8px 30px rgba(0, 143, 173, 0.1);
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+.login-title {
+  text-align: center;
+  color: #0C8FAD;
+  font-weight: 700;
+  font-size: 28px;
+  margin-bottom: 8px;
+}
+
+.login-subtitle {
+  text-align: center;
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 28px;
+}
+
+.login-input {
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-size: 14px;
+  border: 1px solid #ddd;
+}
+
+.login-btn {
+  background-color: #0C8FAD;
+  color: white;
+  font-weight: 600;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+.login-btn:hover {
+  background-color: #097a94;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(12, 143, 173, 0.3);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* === Staff Grid Container === */
+.staff-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+#staff-heading {
+  color: #0C8FAD;
+  font-weight: 500;
+}
+
+
+/* === Staff Grid Layout === */
+.staff-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 columns */
+  gap: 24px;
+}
+
+@media (max-width: 992px) {
+  .staff-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 576px) {
+  .staff-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Optional: make sure cards take full height inside grid */
+.staff-card {
+  background-color: #fff !important;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  max-width: 400px;
+}
+
+
+.staff-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 143, 173, 0.15);
+}
+
+.staff-img {
+  width: 90px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid #E6F4F7;
+}
+
+.staff-img-placeholder {
+  width: 90px;
+  height: 90px;
+  line-height: 90px;
+  background-color: #f0f4f8;
+  border-radius: 50%;
+  color: #999;
+  font-size: 12px;
+}
+
+.staff-name {
+  font-weight: 600;
+  color: #0C8FAD;
+  margin-bottom: 4px;
+}
+
+.staff-role {
+  font-size: 14px;
+  color: #555;
+}
+
+.staff-contact {
+  font-size: 13px;
+  color: #555;
+}
+
+.btn-details {
+  background-color: #0C8FAD;
+  color: white;
+  font-weight: 500;
+  border-radius: 8px;
+  padding: 6px 14px;
+}
+
+.btn-details:hover {
+  background-color: #097a94;
+}
+
+/* === Add Staff Button Matching "+ Add Staff" === */
+.add-staff-btn {
+  background-color: #0C8FAD;
+  color: white;
+  font-weight: 600;
+  border-radius: 12px;
+  padding: 10px 20px;
+  transition: background-color 0.3s ease;
+  text-decoration: none;
+}
+
+.add-staff-btn:hover {
+  background-color: #097a94;
+}
+
+/* === Search Bar Styling === */
+
+.search-bar {
+  max-width: 300px;
+  display: flex;
+  justify-content: flex-start; /* or center */
+  border-radius: 16px;
+}
+
+
