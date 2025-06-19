@@ -1,0 +1,29 @@
+<div class="container mt-3">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">Projects</li>
+      <li class="breadcrumb-item active">See Details</li>
+    </ol>
+  </nav>
+
+  <ul class="nav nav-tabs mb-4">
+    <li class="nav-item">
+      <a class="nav-link <%= activeTab === 'details' ? 'active' : '' %>" href="/project/<%= project._id %>">Details</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link <%= activeTab === 'team' ? 'active' : '' %>" href="/project/<%= project._id %>/team">Team</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link <%= activeTab === 'stakeholders' ? 'active' : '' %>" href="/project/<%= project._id %>/stakeholders">Stakeholders</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link <%= activeTab === 'milestones' ? 'active' : '' %>" href="/project/<%= project._id %>/milestones">Milestones</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link <%= activeTab === 'documents' ? 'active' : '' %>" href="/project/<%= project._id %>/documents">Documents</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link <%= activeTab === 'tasks' ? 'active' : '' %>" href="/project/<%= project._id %>/tasks">Tasks</a>
+    </li>
+  </ul>
+</div>

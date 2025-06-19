@@ -11,6 +11,7 @@ const connectToDatabase = require("./dbConfig");
 //import models
 const {staff}= require ("./models/staffModel");
 const {user}= require ("./models/userModel");
+const {project}= require ("./models/ProjectModel");
 
 const app = express();
 const PORT = process.env.PORT || 3000;

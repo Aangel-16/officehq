@@ -1,0 +1,47 @@
+<%- include("../partials/header") %>
+
+<div class="container mt-5">
+  <h2 class="text-primary mb-4">+ Add Project</h2>
+
+  <form action="/project/addProject" method="POST">
+    <div class="mb-3">
+      <label for="projectId" class="form-label">Project ID</label>
+      <input type="text" class="form-control" id="projectId" name="projectId" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="pname" class="form-label">Project Name</label>
+      <input type="text" class="form-control" id="pname" name="pname" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="department" class="form-label">Department</label>
+      <input type="text" class="form-control" id="department" name="department" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="category" class="form-label">Category</label>
+      <input type="text" class="form-control" id="category" name="category" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="startDate" class="form-label">Start Date</label>
+      <input type="date" class="form-control" id="startDate" name="startDate" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="endDate" class="form-label">End Date</label>
+      <input type="date" class="form-control" id="endDate" name="endDate" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="description" class="form-label">Project Description</label>
+      <textarea class="form-control" id="description" name="description" rows="4" required></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save Project</button>
+    <a href="/project" class="btn btn-secondary">Cancel</a>
+  </form>
+</div>
+
+<%- include("../partials/footer") %>
