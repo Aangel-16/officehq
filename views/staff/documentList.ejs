@@ -1,30 +1,62 @@
 <%- include("../partials/header") %>
 
+<% if (typeof staff !== 'undefined') { %>
+  <%- include("../partials/staffHeader", { staff: staff, activeTab: 'documentList' }) %>
+<% } %>
+
 <div class="staff-container mt-5">
   <div class="d-flex justify-content-between align-items-center mb-4">
     <h2 id="staff-heading">Documents</h2>
     <a href="/staff/addDocument/<%= staffId %>" class="btn add-staff-btn">+ Add Document</a>
   </div>
 
+  <!-- Search input -->
   <div class="search-bar mb-4">
-    <input type="text" class="form-control search input" placeholder="Search...">
+    <input type="text" class="form-control search-input" placeholder="Search by type or description...">
   </div>
 
-  <div class="staff-grid">
-    <% documents.forEach(doc => { %>
-      <div>
-        <div class="staff-card p-3 text-center">
-          <i class="bi bi-file-earmark-text mb-2" style="font-size: 2rem; color: #0C8FAD;"></i>
-          <h5 class="staff-name"><%= doc.title %></h5>
-          <p class="staff-role mb-1"><%= doc.title %> Expire | <%= doc.expiryDate %></p>
-          <p class="staff-contact">Document</p>
-          <a href="/uploads/<%= doc.fileName %>" target="_blank"><%= doc.fileName %></a>
-          <br />
-          <a href="/documents/<%= doc._id %>" class="btn btn-details mt-2">See Details</a>
+  <!-- Document cards -->
+  <div class="staff-grid" id="document-list">
+    <% if (documents && documents.length > 0) { %>
+      <% documents.forEach(doc => { %>
+        <div class="document-item">
+          <div class="staff-card p-3 text-center">
+            <i class="bi bi-file-earmark-text mb-2" style="font-size: 2rem; color: #0C8FAD;"></i>
+            <h5 class="staff-name"><%= doc.type %></h5>
+            <p class="staff-contact"><%= doc.description || 'No description' %></p>
+
+            <!-- Download -->
+            <a href="/uploads/<%= doc.fileName %>" download><%= doc.fileName %></a>
+            <br />
+
+            <!-- Preview -->
+            <a href="/uploads/<%= doc.fileName %>" target="_blank" class="btn btn-details mt-2">See Details</a>
+          </div>
         </div>
-      </div>
-    <% }) %>
+      <% }) %>
+    <% } else { %>
+      <p class="text-muted text-center">No documents found.</p>
+    <% } %>
   </div>
 </div>
 
 <%- include("../partials/footer") %>
+
+<!-- JavaScript for search filter -->
+<script>
+  const searchInput = document.querySelector('.search-input');
+  const documents = document.querySelectorAll('.document-item');
+
+  searchInput.addEventListener('input', () => {
+    const query = searchInput.value.toLowerCase();
+
+    documents.forEach(doc => {
+      const text = doc.innerText.toLowerCase();
+      if (text.includes(query)) {
+        doc.style.display = 'block';
+      } else {
+        doc.style.display = 'none';
+      }
+    });
+  });
+</script>
