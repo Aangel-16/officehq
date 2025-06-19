@@ -3,78 +3,56 @@
 <div class="employment-container">
   <div class="top-bar">
     <input type="text" id="searchInput" placeholder="Search Filter Lines..." />
-    <button onclick="openModal()">+ Add Employment</button>
   </div>
 
-  <table id="employmentTable">
-    <thead>
-      <tr>
-        <th>Role Title</th>
-        <th>Employment Type</th>
-        <th>Start Date</th>
-        <th>End Date</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% employmentList.forEach(emp => { %>
-        <tr>
-          <td><%= emp.role %></td>
-          <td><%= emp.type %></td>
-          <td><%= emp.startDate %></td>
-          <td><%= emp.endDate %></td>
-        </tr>
-      <% }) %>
-    </tbody>
-  </table>
-
-  <div class="pagination-controls">
-    <button disabled>Previous</button>
-    <button disabled>Next</button>
-  </div>
-</div>
-
-<!-- ===== Modal for Add Employment ===== -->
-<div class="modal fade" id="addEmploymentModal" tabindex="-1" aria-labelledby="addEmploymentModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content p-3 rounded-4">
-      <div class="modal-header">
-        <h5 class="modal-title text-primary fw-semibold" id="addEmploymentModalLabel">Add Employment</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <form action="/addEmployment/<%= staff._id %>" method="POST">
-        <div class="modal-body">
-          <div class="mb-3">
-            <label for="role" class="form-label">Role Title</label>
-            <input type="text" class="form-control rounded-3 shadow-sm" id="role" name="role" required />
-          </div>
-          <div class="mb-3">
-            <label for="type" class="form-label">Employment Type</label>
-            <select class="form-select rounded-3 shadow-sm" id="type" name="type" required>
-              <option value="">Select Type</option>
-              <option value="Labour">Labour</option>
-              <option value="Intern">Intern</option>
-              <option value="Contract">Contract</option>
-            </select>
-          </div>
-          <div class="mb-3">
-            <label for="startDate" class="form-label">Start Date</label>
-            <input type="date" class="form-control rounded-3 shadow-sm" id="startDate" name="startDate" required />
-          </div>
-          <div class="mb-3">
-            <label for="endDate" class="form-label">End Date</label>
-            <input type="date" class="form-control rounded-3 shadow-sm" id="endDate" name="endDate" required />
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="submit" class="btn btn-primary rounded-3">Add</button>
-          <button type="button" class="btn btn-outline-secondary rounded-3" data-bs-dismiss="modal">Cancel</button>
-        </div>
-      </form>
+  <div class="staff-container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <button class="add-staff-btn" onclick="openModal()">+ Add Employment</button>
     </div>
+
+    <table id="employmentTable">
+      <thead>
+        <tr>
+          <th>Role Title</th>
+          <th>Employment Type</th>
+          <th>Start Date</th>
+          <th>End Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% employmentList.forEach(emp => { %>
+          <tr>
+            <td><%= emp.role %></td>
+            <td><%= emp.type %></td>
+            <td><%= emp.startDate %></td>
+            <td><%= emp.endDate %></td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
   </div>
 </div>
 
-<!-- ===== JS for Modal and Search ===== -->
+<!-- Modal -->
+<div id="employmentModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <h3>Add Employment</h3>
+    <form action="/staff/addEmployment/<%= staff._id %>" method="POST">
+      <input type="text" name="role" placeholder="Role Title" required />
+      <select name="type" required>
+        <option value="">Select Type</option>
+        <option value="Labour">Labour</option>
+        <option value="Intern">Intern</option>
+        <option value="Contract">Contract</option>
+      </select>
+      <input type="date" name="startDate" required />
+      <input type="date" name="endDate" required />
+      <button type="submit">Add</button>
+    </form>
+  </div>
+</div>
+
 <script>
   function openModal() {
     document.getElementById('employmentModal').style.display = 'block';
@@ -87,7 +65,7 @@
   window.onclick = function (event) {
     const modal = document.getElementById('employmentModal');
     if (event.target == modal) {
-      modal.style.display = 'none';
+      modal.style.display = "none";
     }
   }
 
@@ -100,5 +78,3 @@
     });
   });
 </script>
-
-<%- include('../partials/footer') %>
