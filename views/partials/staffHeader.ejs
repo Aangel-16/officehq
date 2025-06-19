@@ -8,7 +8,7 @@
 
   <ul class="nav nav-tabs mb-4">
     <li class="nav-item">
-      <a class="nav-link <%= activeTab === 'details' ? 'active' : '' %>" href="#">Details</a>
+      <a class="nav-link <%= activeTab === 'details' ? 'active' : '' %>" href="/staff/<%= staff._id %>">Details</a>
     </li>
     <li class="nav-item">
       <a class="nav-link <%= activeTab === 'employment' ? 'active' : '' %>" href="/staff/employment/<%= staff._id %>">Employment</a>

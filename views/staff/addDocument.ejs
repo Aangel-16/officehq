@@ -1,16 +1,18 @@
 <%- include("../partials/header") %>
 
 <div class="container form-container">
-  <h3 class="mb-4 text-primary">Add Document</h3>
+  <!-- Heading and Buttons in Same Row -->
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h3 class="text-primary mb-0">Add Document</h3>
 
-  <!-- Top right buttons -->
-  <div class="d-flex justify-content-end gap-2 mb-4">
-    <div class="d-flex justify-content-end gap-2 mb-4">
-  <a href="/staff/documentList/<%= staffId %>" class="btn btn-cancel">Cancel</a>
-  <button type="submit" form="documentForm" class="btn btn-save">Save</button>
-</div>
-
+    <div class="d-flex gap-2">
+      <a href="/staff/documentList/<%= staffId %>" class="btn btn-cancel">Cancel</a>
+      <button type="submit" form="documentForm" class="btn btn-save">Save</button>
+    </div>
   </div>
+<br>
+  <!-- Add spacing between heading and form -->
+  <div class="mb-4"></div>
 
   <form id="documentForm" action="/staff/documents/<%= staffId %>" method="POST" enctype="multipart/form-data">
     <div class="row mb-3">
@@ -38,7 +40,7 @@
 
     <div class="mb-3">
       <label class="form-label">Description</label>
-      <textarea name="description" class="form-control rounded-input" rows="3" placeholder="Enter description..."></textarea>
+      <textarea name="description" class="form-control rounded-input" rows="2" placeholder="Enter description..." style="width: 400px;"></textarea>
     </div>
 
     <div class="mb-4">
