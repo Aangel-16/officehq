@@ -30,7 +30,6 @@ button, .btn, .add-staff-btn, .btn-details {
   max-width: 1300px;
   margin: 40px auto;
   margin-top: 15px;
-  
 }
 
 
@@ -74,6 +73,12 @@ button, .btn, .add-staff-btn, .btn-details {
   width: 100%;
   border-bottom: 3px solid #0C8FAD;
 }
+
+/* Remove bottom border line from nav-tabs */
+.nav-tabs {
+  border-bottom: none !important;
+}
+
 
 /* ===== Icon Button Styling ===== */
 .icon-button {
