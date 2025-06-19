@@ -1,14 +1,23 @@
 <%- include('../partials/header') %>
+<%- include('../partials/staffHeader', { staff, activeTab: 'employment' }) %>
 
 <div class="employment-container">
-  <div class="top-bar">
+  <!--<div class="top-bar">
     <input type="text" id="searchInput" placeholder="Search Filter Lines..." />
   </div>
 
   <div class="staff-container mt-5">
-    <div class="d-flex justify-content-between align-items-center mb-4">
-      <button class="add-staff-btn" onclick="openModal()">+ Add Employment</button>
-    </div>
+   <div class="d-flex justify-content-between align-items-center mb-4">
+        <button class="add-staff-btn" onclick="openModal()">+ Add Employment</button>
+   </div>-->
+
+   <div class="staff-container mt-5">
+  <div class="top-bar justify-content-between">
+    <input type="text" id="searchInput" placeholder="Search Filter Lines..." />
+    <button class="add-staff-btn" onclick="openModal()">+ Add Employment</button>
+  </div>
+
+
 
     <table id="employmentTable">
       <thead>
