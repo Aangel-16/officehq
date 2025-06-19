@@ -1,6 +1,6 @@
 /* ===== Global Body ===== */
 body {
-  background-color: #F0F4F8; /* slightly darker than white */
+  background-color: #F7F7F7; /* slightly darker than white */
   font-family: 'Inter', sans-serif;
   min-height: 100vh;
   margin: 0;
@@ -29,8 +29,10 @@ button, .btn, .add-staff-btn, .btn-details {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
   max-width: 1300px;
   margin: 40px auto;
+  margin-top: 15px;
   
 }
+
 
 /* ===== Navbar Styling ===== */
 .navbar {
@@ -343,7 +345,7 @@ button, .btn, .add-staff-btn, .btn-details {
 
 .address-box {
   width: 200%;
-  max-width: 600px;
+  max-width: 400px;
 }
 
 
