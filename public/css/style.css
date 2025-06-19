@@ -377,7 +377,7 @@ button, .btn, .add-staff-btn, .btn-details {
 }
 
 .top-bar button {
-  background-color: transparent;
+  /*background-color: transparent;*/
   color: #0C8FAD;
   border: 1.5px solid #0C8FAD;
   padding: 8px 20px;
