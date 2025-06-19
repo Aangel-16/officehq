@@ -1,46 +1,32 @@
 <%- include("../partials/header") %>
 
-<div class="container mt-5">
+<div class="staff-container mt-5">
   <div class="d-flex justify-content-between align-items-center mb-4">
-    <h2 class="text-primary">Staff Members</h2>
-    <a href="/staff/add" class="btn btn-success">+ Add Staff</a>
+    <h2  id="staff-heading">Staff Members</h2>
+    <a href="/staff/add" class="btn add-staff-btn">+ Add Staff</a>
   </div>
 
-  <div class="table-responsive">
-    <table class="table table-bordered table-striped align-middle">
-      <thead class="table-dark text-center">
-        <tr>
-          <th>Photo</th>
-          <th>Name</th>
-          <th>Phone</th>
-          <th>Email</th>
-          <th>Designation</th>
-          <th>Department</th>
-          <th>Action</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% staff.forEach((person) => { %>
-          <tr class="text-center">
-            <td>
-              <% if (person.photo) { %>
-                <img src="/uploads/<%= person.photo %>" class="img-thumbnail" style="width: 80px; height: 80px; object-fit: cover;">
-              <% } else { %>
-                <span class="text-muted">No Image</span>
-              <% } %>
-            </td>
-            <td><%= person.firstName %> <%= person.lastName %></td>
-            <td><%= person.phone || '-' %></td>
-            <td><%= person.email %></td>
-            <td><%= person.designation %></td>
-            <td><%= person.department %></td>
-            <td>
-              <a href="/staff/<%= person._id %>" class="btn btn-info btn-sm">See Details</a>
-            </td>
-          </tr>
-        <% }) %>
-      </tbody>
-    </table>
+  <div class="search-bar mb-4">
+    <input type="text" class="form-control search input" placeholder="Search...">
+  </div>
+
+  <div class="staff-grid">
+    <% staff.forEach((person) => { %>
+      <div>
+        <div class="staff-card p-3 text-center">
+          <% if (person.photo) { %>
+            <img src="/uploads/<%= person.photo %>" class="staff-img mb-3" alt="Photo">
+          <% } else { %>
+            <div class="staff-img-placeholder mb-3">No Image</div>
+          <% } %>
+          <h5 class="staff-name"><%= person.firstName %> <%= person.lastName %></h5>
+          <p class="staff-role mb-1"><%= person.designation %></p>
+          <p class="staff-contact mb-1"><i class="bi bi-telephone-fill"></i> <%= person.phone || '-' %></p>
+          <p class="staff-contact mb-3"><i class="bi bi-envelope-fill"></i> <%= person.email %></p>
+          <a href="/staff/<%= person._id %>" class="btn btn-details">See Details</a>
+        </div>
+      </div>
+    <% }) %>
   </div>
 </div>
 
