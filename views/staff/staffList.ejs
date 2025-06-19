@@ -2,17 +2,18 @@
 
 <div class="staff-container mt-5">
   <div class="d-flex justify-content-between align-items-center mb-4">
-    <h2  id="staff-heading">Staff Members</h2>
+    <h2 id="staff-heading">Staff Members</h2>
     <a href="/staff/add" class="btn add-staff-btn">+ Add Staff</a>
   </div>
-
+  <div class="top-bar">
   <div class="search-bar mb-4">
-    <input type="text" class="form-control search input" placeholder="Search...">
+    <input type="text" class="form-control search-input" placeholder="Search staff...">
   </div>
+</div>
 
   <div class="staff-grid">
     <% staff.forEach((person) => { %>
-      <div>
+      <div class="staff-card-wrapper">
         <div class="staff-card p-3 text-center">
           <% if (person.photo) { %>
             <img src="/uploads/<%= person.photo %>" class="staff-img mb-3" alt="Photo">
@@ -29,5 +30,22 @@
     <% }) %>
   </div>
 </div>
+
+<!-- JavaScript for search filter -->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const searchInput = document.querySelector('.search-input');
+    const staffCards = document.querySelectorAll('.staff-card-wrapper');
+
+    searchInput.addEventListener('input', () => {
+      const query = searchInput.value.toLowerCase().trim();
+
+      staffCards.forEach(card => {
+        const text = card.innerText.toLowerCase();
+        card.style.display = text.includes(query) ? 'block' : 'none';
+      });
+    });
+  });
+</script>
 
 <%- include("../partials/footer") %>
