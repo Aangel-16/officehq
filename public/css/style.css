@@ -299,8 +299,9 @@ button, .btn, .add-staff-btn, .btn-details {
   background-color: #097a94;
 }
 
-/* === Add Staff Button Matching "+ Add Staff" === */
-.add-staff-btn {
+/* === Add/Cancel Staff Button Matching "+ Add Staff" === */
+.add-staff-btn,
+.cancel-add-staff-btn {
   background-color: #0C8FAD;
   color: white;
   font-weight: 600;
@@ -310,8 +311,25 @@ button, .btn, .add-staff-btn, .btn-details {
   text-decoration: none;
 }
 
-.add-staff-btn:hover {
+/* Hover effect for both */
+.add-staff-btn:hover,
+.cancel-add-staff-btn:hover {
   background-color: #097a94;
+}
+
+/* Style the anchor inside cancel button */
+.cancel-add-staff-btn a.cancel-link {
+  color: white;
+  text-decoration: none;
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+}
+
+/* Optional: make anchor fill button space */
+.cancel-add-staff-btn a.cancel-link:hover {
+  text-decoration: none;
+  color: black;
 }
 
 /* === Search Bar Styling === */
