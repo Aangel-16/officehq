@@ -1,0 +1,13 @@
+<div class="container">
+  <ul class="nav nav-tabs mb-4">
+    <li class="nav-item">
+      <a class="nav-link <%= activeTaskTab === 'backlog' ? 'active' : '' %>" href="/project/<%= project._id %>/tasks/backlog">Backlog</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link <%= activeTaskTab === 'bugs' ? 'active' : '' %>" href="/project/<%= project._id %>/tasks/bugs">Bugs</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link <%= activeTaskTab === 'sprints' ? 'active' : '' %>" href="/project/<%= project._id %>/tasks/sprints">Sprints</a>
+    </li>
+  </ul>
+</div>

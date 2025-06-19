@@ -1,0 +1,32 @@
+<%- include("../partials/header") %>
+
+<div class="staff-container mt-5">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 id="staff-heading">Projects</h2>
+    <a href="/project/addProject" class="btn add-staff-btn">+ Add Project</a>
+  </div>
+
+  <div class="search-bar mb-4">
+    <input type="text" class="form-control search input" placeholder="Search...">
+  </div>
+
+  <% if (projects.length > 0) { %>
+    <div class="staff-grid">
+      <% projects.forEach((project) => { %>
+        <div>
+          <div class="staff-card p-3">
+            <h5 class="staff-name mb-2"><%= project.pname %></h5>
+            <p class="staff-contact mb-1"><strong>Department:</strong> <%= project.department %></p>
+            <p class="staff-contact mb-1"><strong>Start:</strong> <%= project.startDate %></p>
+            <p class="staff-contact mb-1"><strong>End:</strong> <%= project.endDate %></p>
+            <a href="/project/<%= project._id %>" class="btn btn-details">See Details</a>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+  <% } else { %>
+    <p>No projects added yet.</p>
+  <% } %>
+</div>
+
+<%- include("../partials/footer") %>

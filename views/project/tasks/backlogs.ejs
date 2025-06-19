@@ -1,0 +1,74 @@
+<%- include('../partials/head') %>
+
+<div class="container mt-3">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">Projects</li>
+      <li class="breadcrumb-item active">See Details</li>
+    </ol>
+  </nav>
+
+  <!-- Project Tabs -->
+  <ul class="nav nav-tabs mb-4">
+    <li class="nav-item"><a class="nav-link <%= activeTab === 'details' ? 'active' : '' %>" href="/project/<%= project._id %>">Details</a></li>
+    <li class="nav-item"><a class="nav-link <%= activeTab === 'team' ? 'active' : '' %>" href="/project/<%= project._id %>/team">Team</a></li>
+    <li class="nav-item"><a class="nav-link <%= activeTab === 'stakeholders' ? 'active' : '' %>" href="/project/<%= project._id %>/stakeholders">Stakeholders</a></li>
+    <li class="nav-item"><a class="nav-link <%= activeTab === 'milestones' ? 'active' : '' %>" href="/project/<%= project._id %>/milestones">Milestones</a></li>
+    <li class="nav-item"><a class="nav-link <%= activeTab === 'documents' ? 'active' : '' %>" href="/project/<%= project._id %>/documents">Documents</a></li>
+    <li class="nav-item"><a class="nav-link <%= activeTab === 'tasks' ? 'active' : '' %>" href="/project/<%= project._id %>/tasks">Tasks</a></li>
+  </ul>
+</div>
+
+<!-- Task Tabs -->
+<div class="container">
+  <ul class="nav nav-tabs mb-4">
+    <li class="nav-item"><a class="nav-link <%= activeTaskTab === 'backlog' ? 'active' : '' %>" href="/project/<%= project._id %>/tasks/backlog">Backlog</a></li>
+    <li class="nav-item"><a class="nav-link <%= activeTaskTab === 'bugs' ? 'active' : '' %>" href="/project/<%= project._id %>/tasks/bugs">Bugs</a></li>
+    <li class="nav-item"><a class="nav-link <%= activeTaskTab === 'sprints' ? 'active' : '' %>" href="/project/<%= project._id %>/tasks/sprints">Sprints</a></li>
+  </ul>
+</div>
+
+<!-- Backlog Table -->
+<div class="container">
+  <h5 class="text-primary mb-3">Backlogs</h5>
+
+  <div class="search-add-bar d-flex justify-content-between align-items-center mb-3">
+    <input type="text" class="search-input form-control w-50" placeholder="🔍 Search">
+    <button class="add-button">Add</button>
+  </div>
+
+  <table class="backlog-table table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Files Uploaded</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>BKL-247</td>
+        <td>Design Dashboard UI</td>
+        <td><a href="#" class="uploaded-files">Uploaded (2)</a></td>
+        <td>12-01-2025</td>
+        <td>20-01-2025</td>
+        <td>Ongoing</td>
+        <td>
+          <div class="dropdown">
+            <button class="btn btn-sm btn-light dropdown-toggle" data-bs-toggle="dropdown">⋮</button>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">View</a></li>
+              <li><a class="dropdown-item" href="#">Edit</a></li>
+            </ul>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
