@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Milestones - <%= project.pname %></title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/style.css" rel="stylesheet">
+</head>
+<body>
+  <%- include("../partials/header") %>
+
+  <%- include("../partials/projectHeader", { project: project, activeTab: 'milestones' }) %>
+
+  <div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h2>Milestones - <%= project.pname %></h2>
+      <button class="btn btn-outline-primary" data-bs-toggle="offcanvas" data-bs-target="#addMilestoneCanvas">+ Add Milestone</button>
+    </div>
+
+    <% if (!project.milestones || project.milestones.length === 0) { %>
+      <p class="text-muted">No milestones added yet.</p>
+    <% } else { %>
+      <div class="row">
+        <% project.milestones.forEach((m, index) => { %>
+          <div class="col-md-4 mb-4">
+            <div class="card p-3 shadow-sm">
+              <h5><%= m.title %></h5>
+              <p><strong>Status:</strong> <%= m.state %></p>
+              <p><%= m.description %></p>
+              <p><small>Start: <%= m.startDate %></small></p>
+              <p><small>End: <%= m.endDate %></small></p>
+
+              <div class="d-flex justify-content-between mt-3">
+                <button class="btn btn-sm btn-outline-warning" data-bs-toggle="offcanvas" data-bs-target="#editMilestoneCanvas<%= index %>">Edit</button>
+                <form action="/project/<%= project._id %>/milestones/delete/<%= index %>" method="POST" onsubmit="return confirm('Delete this milestone?')">
+                  <button class="btn btn-sm btn-outline-danger">Delete</button>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <!-- ⬇️ Edit Offcanvas for Each Milestone -->
+          <div class="offcanvas offcanvas-end" tabindex="-1" id="editMilestoneCanvas<%= index %>">
+            <div class="offcanvas-header">
+              <h5 class="offcanvas-title">Edit Milestone</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+            </div>
+            <div class="offcanvas-body">
+              <form action="/project/<%= project._id %>/milestones/edit/<%= index %>" method="POST">
+                <div class="mb-3">
+                  <label>Title</label>
+                  <input type="text" name="title" class="form-control" required value="<%= m.title %>">
+                </div>
+                <div class="mb-3">
+                  <label>Description</label>
+                  <textarea name="description" class="form-control" required><%= m.description %></textarea>
+                </div>
+                <div class="mb-3 row">
+                  <div class="col">
+                    <label>Start Date</label>
+                    <input type="date" name="startDate" class="form-control" value="<%= m.startDate %>" required>
+                  </div>
+                  <div class="col">
+                    <label>End Date</label>
+                    <input type="date" name="endDate" class="form-control" value="<%= m.endDate %>" required>
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <label>Status</label>
+                  <select name="state" class="form-select" required>
+                    <option value="">-- Select State --</option>
+                    <option value="Planning" <%= m.state === "Planning" ? "selected" : "" %>>Planning</option>
+                    <option value="In Progress" <%= m.state === "In Progress" ? "selected" : "" %>>In Progress</option>
+                    <option value="Testing" <%= m.state === "Testing" ? "selected" : "" %>>Testing</option>
+                    <option value="Completed" <%= m.state === "Completed" ? "selected" : "" %>>Completed</option>
+                  </select>
+                </div>
+
+                <button type="submit" class="btn btn-success">Update</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="offcanvas">Cancel</button>
+              </form>
+            </div>
+          </div>
+        <% }) %>
+      </div>
+    <% } %>
+  </div>
+
+  <%- include("addMilestone") %>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

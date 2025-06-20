@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html><head>
+  <meta charset="UTF-8">
+  <title>Edit Document - <%= project.pname %></title>
+  <link href="...bootstrap..." rel="stylesheet">
+</head><body>
+  <div class="container mt-4">
+    <h3>Edit Document - <%= project.pname %></h3>
+    <form action="/project/<%= project._id %>/documents/edit/<%= index %>" method="POST">
+      <div class="mb-3"><label>Category *</label>
+        <select name="category" class="form-select" required>
+          <option<%= doc.category==='License'? ' selected':'' %>>License</option>
+          <option<%= doc.category==='Passport'? ' selected':'' %>>Passport</option>
+          <option<%= doc.category==='Credit Card'? ' selected':'' %>>Credit Card</option>
+          <option<%= doc.category==='Aadhaar'? ' selected':'' %>>Aadhaar</option>
+        </select>
+      </div>
+      <div class="mb-3"><label>Type *</label>
+        <select name="type" class="form-select" required>
+          <option<%= doc.type==='PDF'? ' selected':'' %>>PDF</option>
+          <option<%= doc.type==='Image'? ' selected':'' %>>Image</option>
+        </select>
+      </div>
+      <div class="mb-3"><label>Description</label>
+        <textarea name="description" class="form-control"><%= doc.description %></textarea>
+      </div>
+      <div class="mb-3"><label>Filename *</label>
+        <input type="text" name="filename" class="form-control" value="<%= doc.filename %>" required>
+      </div>
+      <button class="btn btn-success">Update Document</button>
+      <a href="/project/<%= project._id %>/documents" class="btn btn-secondary">Cancel</a>
+    </form>
+  </div>
+</body></html>

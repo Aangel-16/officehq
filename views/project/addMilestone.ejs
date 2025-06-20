@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Add Milestone - <%= project.pname %></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <!-- Header Include -->
+  <%- include("../partials/header") %>
+  <%- include("../partials/projectHeader", { project: project, activeTab: 'milestones' }) %>
+
+  <!-- Launch Add Milestone Button -->
+  <div class="container mt-4">
+    <button class="btn btn-outline-primary" data-bs-toggle="offcanvas" data-bs-target="#addMilestoneCanvas">
+      + Add Milestone
+    </button>
+  </div>
+
+  <!-- Offcanvas: Add Milestone -->
+  <div class="offcanvas offcanvas-end" tabindex="-1" id="addMilestoneCanvas">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title">Add Milestone</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+    </div>
+    <div class="offcanvas-body">
+      <form action="/project/<%= project._id %>/milestones/milestone_add" method="POST">
+        <div class="mb-3">
+          <label for="title">Title</label>
+          <input type="text" name="title" class="form-control" id="title" required>
+        </div>
+
+        <div class="mb-3">
+          <label for="description">Description</label>
+          <textarea name="description" class="form-control" id="description" required></textarea>
+        </div>
+
+        <div class="mb-3 row">
+          <div class="col">
+            <label for="startDate">Start Date</label>
+            <input type="date" name="startDate" class="form-control" id="startDate" required>
+          </div>
+          <div class="col">
+            <label for="endDate">End Date</label>
+            <input type="date" name="endDate" class="form-control" id="endDate" required>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="state">Status</label>
+          <select name="state" class="form-select" id="state" required>
+            <option value="">-- Select State --</option>
+            <option value="Planning">Planning</option>
+            <option value="In Progress">In Progress</option>
+            <option value="Testing">Testing</option>
+            <option value="Completed">Completed</option>
+          </select>
+        </div>
+
+        <div class="d-flex justify-content-end">
+          <button type="submit" class="btn btn-primary me-2">Save</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="offcanvas">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Bootstrap Bundle JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
