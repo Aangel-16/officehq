@@ -4,7 +4,7 @@ const router = express.Router();
 const path = require("path");
 const fs = require("fs");
 const bcrypt = require("bcrypt");
-const { User } = require("../models/userModel"); // adjust path as needed
+const { User, Department } = require("../models/userModel");
 const { Staff } = require("../models/staffModel");
 
 const uploadDir = path.join(__dirname, "../public/uploads");
@@ -23,9 +23,16 @@ router.get("/", async (req, res) => {
 });
 
 // Add new staff form
-router.get("/add", (req, res) => {
-  res.render("staff/addStaff");
+router.get("/add", async (req, res) => {
+  try {
+    const departments = await Department.find().sort({ deptName: 1 }); // optional: sort alphabetically
+    res.render("staff/addStaff", { departments });
+  } catch (err) {
+    console.error("Error loading departments:", err);
+    res.status(500).send("Failed to load form");
+  }
 });
+
 
 // Handle new staff submission
 router.post("/add", async (req, res) => {
@@ -93,7 +100,7 @@ router.get("/:id", async (req, res) => {
 });
 
 // Show edit staff profile form
-router.get("/edit/:id", async (req, res) => {
+/*router.get("/edit/:id", async (req, res) => {
   try {
     const staff = await Staff.findById(req.params.id);
     if (!staff) return res.status(404).send("Staff not found");
@@ -103,7 +110,26 @@ router.get("/edit/:id", async (req, res) => {
     console.error("Error loading edit form:", err);
     res.status(500).send("Failed to load edit form");
   }
+});*/
+
+// Show edit staff profile form
+router.get("/edit/:id", async (req, res) => {
+  try {
+    const staff = await Staff.findById(req.params.id);
+    if (!staff) return res.status(404).send("Staff not found");
+
+    const departments = await Department.find().sort({ deptName: 1 });
+
+    res.render("staff/editStaffprofile", {
+      staff,
+      departments
+    });
+  } catch (err) {
+    console.error("Error loading edit form:", err);
+    res.status(500).send("Failed to load edit form");
+  }
 });
+
 
 // Handle staff update
 router.post("/edit/:id", async (req, res) => {
@@ -137,19 +163,6 @@ router.post("/edit/:id", async (req, res) => {
   }
 });
 
-
-
-// Get all documents of a staff
-/*router.get("/documentList/:id", async (req, res) => {
-  try {
-    const staff = await Staff.findById(req.params.id);
-    if (!staff) return res.status(404).send("Staff not found");
-    res.render("staff/documentList", { documents: staff.documents, staffId: staff._id });
-  } catch (err) {
-    console.error("Error loading document list:", err);
-    res.status(500).send("Failed to load document list");
-  }
-});*/
 
 router.get("/documentList/:id", async (req, res) => {
   try {

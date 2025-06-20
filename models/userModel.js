@@ -8,6 +8,15 @@ const userSchema = new mongoose.Schema({
   createdAt: { type: Date, default: Date.now }
 });
 
+const departmentSchema = new mongoose.Schema({
+  deptId: { type: Number, required: true, unique: true }, 
+  deptName: { type: String, required: true }
+});
+
+// Models
 const User = mongoose.model('User', userSchema);
-module.exports = { User };
+const Department = mongoose.model('Department', departmentSchema);
+
+// Exporting both
+module.exports = { User, Department };
 
