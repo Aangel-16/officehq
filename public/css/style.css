@@ -583,8 +583,12 @@ button, .btn, .add-staff-btn, .btn-details {
 
 /* === Employment Container === */
 .employment-container {
-  padding: 30px;
-  font-family: 'Inter', sans-serif;
+  background-color: #ffffff;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  max-width: 1300px;
+  margin: 10px auto 40px auto;
 }
 
 /* === Top Bar === */
