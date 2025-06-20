@@ -24,7 +24,7 @@ button, .btn, .add-staff-btn, .btn-details {
 /* ===== Container/Card Wrapper ===== */
 .container {
   background-color: #ffffff;
-  padding: 40px;
+  padding: 8px;
   border-radius: 12px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
   max-width: 1300px;
@@ -32,6 +32,23 @@ button, .btn, .add-staff-btn, .btn-details {
   margin: 15px auto;
 }
 
+/* === Dashboard Page Layout Centering === */
+.dashboard-container {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+.dashboard-card-wrapper {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.dashboard-card-box {
+  width: 280px; /* Match max size of .staff-card */
+}
 
 
 /* ===== Navbar Styling ===== */
