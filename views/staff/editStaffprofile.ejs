@@ -81,12 +81,14 @@
           <label class="form-label">Department<span class="text-danger">*</span></label>
           <select name="department" class="form-select">
             <option value="">Select</option>
-            <option <%= staff.department === 'HR' ? 'selected' : '' %>>HR</option>
-            <option <%= staff.department === 'IT' ? 'selected' : '' %>>IT</option>
-            <option <%= staff.department === 'Admin' ? 'selected' : '' %>>Admin</option>
-            <option <%= staff.department === 'Finance' ? 'selected' : '' %>>Finance</option>
+            <% departments.forEach(dept => { %>
+              <option value="<%= dept.deptName %>" <%= staff.department === dept.deptName ? 'selected' : '' %>>
+                <%= dept.deptName %>
+              </option>
+            <% }) %>
           </select>
         </div>
+
         <div class="col-md-4">
           <label class="form-label">Designation<span class="text-danger">*</span></label>
           <input type="text" name="designation" value="<%= staff.designation || '' %>" class="form-control">

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Team - <%= project.pname %></title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/style.css" rel="stylesheet">
+  <style>
+    .side-popup {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      height: 100%;
+      width: 400px;
+      background: #fff;
+      box-shadow: -2px 0 10px rgba(0, 0, 0, 0.3);
+      transition: right 0.3s ease;
+      padding: 2rem;
+      overflow-y: auto;
+      z-index: 1050;
+    }
+
+    .side-popup.open {
+      right: 0;
+    }
+
+    .side-popup-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .side-popup-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      display: none;
+      z-index: 1040;
+    }
+
+    .side-popup-overlay.show {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+<%- include("../partials/header") %>
+<%- include("../partials/projectHeader", { project: project, activeTab: 'team' }) %>
+
+<div class="container mt-4">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>Team Members - <%= project.pname %></h2>
+    <button class="btn btn-outline-primary" onclick="openPopup()">+ Add Team Member</button>
+  </div>
+
+  <% if (!teamMembers || teamMembers.length === 0) { %>
+    <p class="text-muted">No team members yet.</p>
+  <% } else { %>
+    <div class="row">
+      <% teamMembers.forEach(member => { %>
+        <div class="col-md-4 mb-4">
+          <div class="card p-3 shadow-sm">
+            <h5><%= member.name %></h5>
+            <p class="text-muted"><%= member.role %></p>
+            <p>📞 <%= member.contact %></p>
+            <p>📧 <%= member.email %></p>
+            <p><small><%= member.type %></small></p>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+  <% } %>
+</div>
+
+<!-- 🔲 Overlay -->
+<div class="side-popup-overlay" id="popupOverlay" onclick="closePopup()"></div>
+
+<!-- 🧾 Side Popup Form -->
+<div class="side-popup" id="popupForm">
+  <div class="side-popup-header mb-3">
+    <h5>Add Team Member</h5>
+    <button class="btn-close" onclick="closePopup()"></button>
+  </div>
+  <form action="/project/<%= project._id %>/team/addTeam" method="POST">
+    <div class="mb-3">
+      <label class="form-label">Name</label>
+      <input type="text" name="name" class="form-control" required>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Role</label>
+      <input type="text" name="role" class="form-control" required>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Contact</label>
+      <input type="text" name="contact" class="form-control">
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Email</label>
+      <input type="email" name="email" class="form-control">
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Type</label>
+      <select name="type" class="form-select">
+        <option value="Internal">Internal</option>
+        <option value="External">External</option>
+      </select>
+    </div>
+    <div class="d-flex justify-content-end">
+      <button type="submit" class="btn btn-primary me-2">Save</button>
+      <button type="button" class="btn btn-secondary" onclick="closePopup()">Cancel</button>
+    </div>
+  </form>
+</div>
+
+<script>
+  function openPopup() {
+    document.getElementById('popupForm').classList.add('open');
+    document.getElementById('popupOverlay').classList.add('show');
+  }
+
+  function closePopup() {
+    document.getElementById('popupForm').classList.remove('open');
+    document.getElementById('popupOverlay').classList.remove('show');
+  }
+</script>
+
+</body>
+</html>
