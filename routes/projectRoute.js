@@ -28,7 +28,7 @@ router.get("/addProject", (req, res) => {
   res.render("project/addProject");
 });
 
-// ✅ Place this ABOVE `/:id`
+//  Place this ABOVE `/:id`
 router.get("/taskproject", async (req, res) => {
   try {
     const projects = await Project.find();
@@ -65,7 +65,7 @@ router.get("/:id/tasks", (req, res) => {
 
 router.get("/:id/tasks/backlog", async (req, res) => {
   const project = await Project.findById(req.params.id);
-  res.render("tasks/backlog", {
+  res.render("project/tasks/backlogs", {
     project,
     activeTab: "tasks",
     activeTaskTab: "backlog"
