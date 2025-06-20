@@ -26,25 +26,27 @@
   </div>
 
   <!-- Details Grid -->
-  <div class="row">
-    <div class="col-md-6 mb-3">
-      <strong>Phone:</strong> <%= staff.phone || '-' %>
-    </div>
-    <div class="col-md-6 mb-3">
-      <strong>Email:</strong> <%= staff.email || '-' %>
-    </div>
-    <div class="col-md-6 mb-3">
-      <strong>Gender:</strong> <%= staff.gender || '-' %>
-    </div>
-    <div class="col-md-6 mb-3">
-      <strong>Nationality:</strong> <%= staff.nationality || '-' %>
-    </div>
-    <div class="col-md-6 mb-3">
-      <strong>Department:</strong> <%= staff.department || '-' %>
-    </div>
-    <div class="col-md-12 mb-3">
-      <strong>Address:</strong> <%= staff.address || '-' %>
-    </div>
+ <!-- Details Grid with left alignment -->
+<div class="row ps-5"> <!-- Adjust ps-5 to ps-4 or ps-3 for fine-tuning -->
+  <div class="col-md-6 mb-3">
+    <strong>Phone:</strong> <%= staff.phone || '-' %>
   </div>
+  <div class="col-md-6 mb-3">
+    <strong>Email:</strong> <%= staff.email || '-' %>
+  </div>
+  <div class="col-md-6 mb-3">
+    <strong>Gender:</strong> <%= staff.gender || '-' %>
+  </div>
+  <div class="col-md-6 mb-3">
+    <strong>Nationality:</strong> <%= staff.nationality || '-' %>
+  </div>
+  <div class="col-md-6 mb-3">
+    <strong>Department:</strong> <%= staff.department || '-' %>
+  </div>
+  <div class="col-md-12 mb-3">
+    <strong>Address:</strong> <%= staff.address || '-' %>
+  </div>
+</div>
+
 
 </div>

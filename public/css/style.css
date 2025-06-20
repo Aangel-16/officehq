@@ -352,6 +352,10 @@ button, .btn, .add-staff-btn, .btn-details {
   height: 100%;
 }
 
+.detail-grid {
+  padding-left: 48px; /* or use margin-left if you prefer */
+}
+
 /* Optional: make anchor fill button space */
 .cancel-add-staff-btn a.cancel-link:hover {
   text-decoration: none;
